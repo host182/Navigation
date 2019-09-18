@@ -22,8 +22,6 @@
     // Fetching json object as NSData
     NSData *jsonData = [NSData dataWithContentsOfURL: url];
 
-    // // Converting NSData to NSString
-    // NSString *stringData = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     // Coverting NSData with fetched json as a dictionary object
     NSDictionary *bible = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
 
@@ -34,13 +32,16 @@
 {
     NSMutableArray *allBooks = [[NSMutableArray alloc] initWithCapacity:66];
 
-    for (int i = 1;i<=66;i++)
+    for (int i = 0;i<66;i++)
     {
-        NSString *key = [NSString stringWithFormat:@"%d",i];
-        NSDictionary *thisBook = [bible valueForKey:key];
-        allBooks[i-1] = [thisBook valueForKey:@"name"];
-    }
+        NSString *key = [NSString stringWithFormat:@"%d",i+1];
 
+        // Searching for keys with the book number (1 to 66)
+        NSDictionary *thisBook = [bible valueForKey:key];
+        
+        // Adding the books that are found
+        allBooks[i] = [thisBook valueForKey:@"name"];
+    }
 
     return allBooks;
 }

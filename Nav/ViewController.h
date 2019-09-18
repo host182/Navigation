@@ -10,6 +10,8 @@
 
 @interface ViewController : UIViewController
 
+//For today, I will create the structure with buttons that contain manually entered texts
+//And see if I can change them with the data from the code I wrote in VScode.
 
 @end
 
