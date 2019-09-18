@@ -15,6 +15,7 @@
 		B8E006DD2329984C00AD9C07 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E006DC2329984C00AD9C07 /* main.m */; };
 		B8E006E72329984C00AD9C07 /* NavTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E006E62329984C00AD9C07 /* NavTests.m */; };
 		B8E006F22329984C00AD9C07 /* NavUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E006F12329984C00AD9C07 /* NavUITests.m */; };
+		B8E0070C232C46A300AD9C07 /* BookData.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E0070B232C46A300AD9C07 /* BookData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		B8E006ED2329984C00AD9C07 /* NavUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8E006F12329984C00AD9C07 /* NavUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavUITests.m; sourceTree = "<group>"; };
 		B8E006F32329984C00AD9C07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8E0070A232C46A300AD9C07 /* BookData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookData.h; sourceTree = "<group>"; };
+		B8E0070B232C46A300AD9C07 /* BookData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,8 @@
 				B8E006D02329984B00AD9C07 /* ViewController.h */,
 				B8E006D12329984B00AD9C07 /* ViewController.m */,
 				B8E006D32329984B00AD9C07 /* Main.storyboard */,
+				B8E0070A232C46A300AD9C07 /* BookData.h */,
+				B8E0070B232C46A300AD9C07 /* BookData.m */,
 				B8E006D62329984C00AD9C07 /* Assets.xcassets */,
 				B8E006D82329984C00AD9C07 /* LaunchScreen.storyboard */,
 				B8E006DB2329984C00AD9C07 /* Info.plist */,
@@ -264,6 +269,7 @@
 			files = (
 				B8E006D22329984B00AD9C07 /* ViewController.m in Sources */,
 				B8E006DD2329984C00AD9C07 /* main.m in Sources */,
+				B8E0070C232C46A300AD9C07 /* BookData.m in Sources */,
 				B8E006CF2329984B00AD9C07 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
