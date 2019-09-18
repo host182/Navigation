@@ -5,7 +5,9 @@
 @interface GetData: NSObject
 
 +(NSDictionary *) getDataAsDictionary;
-+(NSArray *) getBooks: (NSDictionary *) bible;
++(NSMutableArray *) getBooks: (NSDictionary *) bible;
++(NSMutableArray *) getChapters: (NSDictionary *) bookChapters : (NSString *) bookName;
++(NSMutableArray *) getVerses: (NSString *) chapter :(NSString *) prefix;
 
 @end
 
@@ -13,14 +15,16 @@
 
 +(NSDictionary *) getDataAsDictionary
 {
+    // Setting up the NSURL object
     NSString *urlString = [NSString stringWithFormat: @"https://www.dropbox.com/s/y24kzlvu1lh5f12/BibleJson.json?dl=1"];
     NSURL *url = [[NSURL alloc] initWithString:urlString];
 
+    // Fetching json object as NSData
     NSData *jsonData = [NSData dataWithContentsOfURL: url];
 
-    NSString *stringData = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    // Coverts the json object as a dictionary object
-    // The dictionary has multiple objects 
+    // // Converting NSData to NSString
+    // NSString *stringData = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    // Coverting NSData with fetched json as a dictionary object
     NSDictionary *bible = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
 
     return bible;
@@ -28,23 +32,42 @@
 
 +(NSMutableArray *) getBooks: (NSDictionary *) bible;
 {
-    NSMutableArray *allBooks = [NSMutableArray array];
+    NSMutableArray *allBooks = [[NSMutableArray alloc] initWithCapacity:66];
 
-    // for (id key in bible)
-    //     {
-    //         NSDictionary *thisBook = [bible valueForKey:key];
-    //         [allBooks addObject:[thisBook valueForKey:@"name"]];
-    //     }
-
-    for (int i = 1; i<=66 ;i++)
-        {
-            NSString *key = [NSString stringWithFormat:@"%d",i];
-            NSDictionary *thisBook = [bible valueForKey:key];
-            [allBooks addObject:[thisBook valueForKey:@"name"]];
-        }
+    for (int i = 1;i<=66;i++)
+    {
+        NSString *key = [NSString stringWithFormat:@"%d",i];
+        NSDictionary *thisBook = [bible valueForKey:key];
+        allBooks[i-1] = [thisBook valueForKey:@"name"];
+    }
 
 
     return allBooks;
+}
+
++(NSMutableArray *) getChapters: (NSDictionary *) bookChapters : (NSString *) bookName;
+{
+    NSMutableArray *allChapters = [[NSMutableArray alloc] initWithCapacity:bookChapters.count];
+
+    for (int i = 0;i<bookChapters.count;i++)
+    {
+        // use of "%@" and "%u" - https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Strings/Articles/formatSpecifiers.html
+        NSString *chapterString = [NSString stringWithFormat:@"%@ %u",bookName,i+1];
+        allChapters[i] = chapterString;
+    }
+    return allChapters;
+}
+
++(NSMutableArray *) getVerses: (NSString *) chapter : (NSString *)prefix
+{
+    int verseCount = [chapter integerValue];
+    NSMutableArray *allVerses = [[NSMutableArray alloc] initWithCapacity:verseCount];
+    for (int i = 0;i<verseCount;i++)
+    {
+        NSString *verseString = [NSString stringWithFormat:@"%@:%u",prefix,i+1];
+        allVerses[i] = verseString;
+    }
+    return allVerses;
 }
 
 @end
